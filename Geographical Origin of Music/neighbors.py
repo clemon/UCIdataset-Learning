@@ -18,7 +18,6 @@ musicData = []
 with open('default_plus_chromatic_features_1059_tracks.txt') as file:
     for line in file:
         musicData.append(eval(line))
-
 # shuffle the data
 random.shuffle(musicData)
 
@@ -54,13 +53,14 @@ for testPoint in testSet:
 #pdb.set_trace()
 
 # calculate the mean squared error
-mseSum = 0.0
+distSum = 0.0
 for i, result in enumerate(results):
     # calc dist between prediction and actual coordinates
     # take MSE on the difference    
-    mseSum += math.sqrt((result[0]-testSet[i][numf])**2+(result[1]-testSet[i][numf+1])**2)
+    distSum += math.sqrt((result[0]-testSet[i][numf])**2+(result[1]-testSet[i][numf+1])**2)
 
-print mseSum/len(results)
+print "average distance error: {}".format(distSum/len(results))
+
 
 
 
